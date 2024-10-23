@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>2006tube</title>
+    <style type="text/css">
+        /* Basic Styling (Minimalistic) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eee;
+            color: #333;
+        }
+
+        #header {
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #content {
+            width: 800px;
+            margin: 20px auto;
+        }
+
+        #searchForm input {
+            padding: 5px;
+            margin: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .video {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>2006tube</h1>
+        <form id="searchForm">
+            <input type="text" name="search" id="searchBox" />
+            <input type="submit" value="Search" />
+        </form>
+    </div>
+    <div id="content">
+        </div>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            // Search form submission
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var query = document.getElementById('searchBox').value;
+                // Handle search query (you'll need a way to fetch videos)
+                loadVideos(query); // Placeholder for video loading
+            });
+        });
+
+        // Placeholder function for loading videos
+        function loadVideos(query) {
+            // 1. You'll need a way to handle the query (e.g., fetch from a database or an API if you're building a full backend).
+            // 2. If the user enters a video URL, extract the video ID.
+            // 3. If the user enters a video ID, create an embed using that ID.
+
+            // Example (Assuming you have a way to get video data):
+            var videos = [
+                { id: "dQw4w9WgXcQ", title: "Rickroll" }, // Example ID 
+                { id: "y6126nQGc9o", title: "Another Video" },
+            ];
+
+            var contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = ''; // Clear previous results
+
+            for (var i = 0; i < videos.length; i++) {
+                var video = videos[i];
+
+                var videoDiv = document.createElement('div');
+                videoDiv.className = 'video';
+                videoDiv.innerHTML = `
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/${video.id}?rel=0&showinfo=0" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                    <h4>${video.title}</h4>
+                `;
+
+                contentDiv.appendChild(videoDiv);
+            }
+        }
+    </script>
+</body>
+</html>
